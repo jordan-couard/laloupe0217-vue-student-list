@@ -11,6 +11,12 @@ npm install
 # serve with hot reload at localhost:8080
 npm run dev
 
+# install json-server
+npm install -g json-server
+
+# serve with start json-server
+json-server --watch students.json
+
 # build for production with minification
 npm run build
 
