@@ -22,9 +22,9 @@ export default {
     },
     addStudent() {
       axios.post('http://localhost:3000/students')
-        firstname: '',
-        lastname: '',
-        age: ''
+      .then((response) => {
+        this.students = response.data;
+      });
     },
     remove(index) {
       this.students.splice(index, 1);
