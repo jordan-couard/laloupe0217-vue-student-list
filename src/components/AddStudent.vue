@@ -4,7 +4,7 @@ export default {
     return {
       newStudent: {
         firstname: '',
-        name: '',
+        lastname: '',
         age: '',
       },
     };

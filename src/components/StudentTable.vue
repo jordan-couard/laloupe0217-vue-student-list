@@ -3,6 +3,7 @@ import axios from 'axios';
 import StudentLine from './StudentLine';
 import AddStudent from './AddStudent';
 
+
 export default {
   components: {
     StudentLine,
@@ -15,19 +16,19 @@ export default {
   },
   methods: {
     getAll() {
-      axios.get('http://localhost:3000/students')
+      axios.get('/api/students')
       .then((response) => {
-        this.students = response.data;
+        this.students = response.results;
       });
     },
     addStudent(student) {
-      axios.post('http://localhost:3000/students', student)
+      axios.post('/api/students/', student)
       .then(() => {
         this.getAll();
       });
     },
     remove(index) {
-      axios.delete(`http://localhost:3000/students/${this.students[index].id}`)
+      axios.delete(`/api/students/${this.students[index].id}`)
       .then(() => {
         this.getAll();
       });
@@ -41,7 +42,7 @@ export default {
 
 <template>
   <div>
-    <student-line v-for='(student, index) in students' :student="student" v-on:remove="remove(index)"></student-line>
+    <StudentLine v-for='(student, index) in students' :student="student" v-on:remove="remove(index)"></StudentLine>
     <addStudent @add-student='addStudent'></addStudent>
   </div>
 </template>
