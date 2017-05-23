@@ -1,9 +1,18 @@
 <script>
 export default {
+  data() {
+    return {
+      newStudent: {
+        firstname: '',
+        name: '',
+        age: '',
+      },
+    };
+  },
   props: ['student'],
   methods: {
-    add() {
-      this.$emit('add-student');
+    addStudent() {
+      this.$emit('add-student', this.newStudent);
     },
   },
 };
@@ -12,18 +21,15 @@ export default {
 <template>
 <div>
 <input
-    v-model="lastname"
-    v-on:keyup.enter="addStudent"
+    v-model="newStudent.lastname"
     placeholder="LASTNAME"
   >
 <input
-    v-model="firstname"
-    v-on:keyup.enter="addStudent"
+    v-model="newStudent.firstname"
     placeholder="FIRSTNAME"
   >
 <input
-    v-model="age"
-    v-on:keyup.enter="addStudent"
+    v-model="newStudent.age"
     placeholder="AGE"
   >
   <button @click="addStudent"> Ajouter

@@ -20,19 +20,21 @@ export default {
         this.students = response.data;
       });
     },
-    addStudent() {
-      axios.post('http://localhost:3000/students')
-      .then((response) => {
-        this.students = response.data;
+    addStudent(student) {
+      axios.post('http://localhost:3000/students', student)
+      .then(() => {
+        this.getAll();
       });
     },
     remove(index) {
-      this.students.splice(index, 1);
+      axios.delete(`http://localhost:3000/students/${this.students[index].id}`)
+      .then(() => {
+        this.getAll();
+      });
     },
   },
   mounted() {
     this.getAll();
-    this.add();
   },
 };
 </script>
@@ -40,7 +42,7 @@ export default {
 <template>
   <div>
     <student-line v-for='(student, index) in students' :student="student" v-on:remove="remove(index)"></student-line>
-    <addStudent></addStudent>
+    <addStudent @add-student='addStudent'></addStudent>
   </div>
 </template>
 
